@@ -3,10 +3,10 @@ Al ejecutar en proyecto aparacera una ventana de logIn, la cual permite ingresar
 
 Hay usuarios pre cargados los mismos son :
 ```
-usuario: adm@example.net pass: 1234 para el Adminsitrador
+usuario: admin@example.net pass: 1234 para el Adminsitrador
 ```
 ```
-usuario: cliente@example.com pass: 1234 para el CLiente 
+usuario: cliente@example.net pass: 1234 para el CLiente 
 ```
 
 Dependiendo del tipo de usuario se nos modifica la barra de navegacion y las opciones que podemos usar, 
