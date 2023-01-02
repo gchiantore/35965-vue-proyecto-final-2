@@ -3,7 +3,9 @@
    <div class="container">
       <div class="header-div">
         <img class="header-img" src="../assets/logo-app.png" alt="">
-        <UserLoggedComponent @enviar="Salir($event)" :userImg="imagen" :userName="nombre"/> 
+        <div class="header-derecho">
+          <UserLoggedComponent @enviar="Salir($event)" :userImg="imagen" :userName="nombre"/> 
+        </div>
       </div>  
    </div>
   </div>
@@ -19,6 +21,7 @@ export default {
      props:{
       imagen:String,
       nombre:String,
+      tipo:Boolean
      },
      methods:{
       Salir(op){
@@ -32,6 +35,11 @@ export default {
     .header{
         background-color: white;
         height: 60px;
+    }
+    .header-derecho{
+      display:flex;
+      flex-direction: row;
+      align-items: center;
     }
     .header-div{
       display:flex;

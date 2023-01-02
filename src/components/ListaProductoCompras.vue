@@ -23,13 +23,17 @@ export default {
         return{
              products:Object,
              prod:Object,
+             user:Object,
              itemcarrito:{
+                userid:'',
+                prodid:'',
                 producto:'',
                 cantidad:'',
                 avatar:'',
                 precio:0,
                 importe:0
-             }
+             },
+             items:[]
         }
     },
 
@@ -40,18 +44,53 @@ export default {
                 .then(data =>{
                     this.products = data
                 })  
+            this.user=JSON.parse(localStorage.getItem('userLog'))   
      },
      methods:{
         agregarCarrito(id)
         {
             this.prod=this.products.find(prod => prod.id === id)
+            this.itemcarrito.userid=this.user.id
+            this.itemcarrito.prodid=this.prod.id
             this.itemcarrito.producto=this.prod.name
             this.itemcarrito.cantidad=1
             this.itemcarrito.precio=this.prod.precio
             this.itemcarrito.avatar=this.prod.imagen
             this.itemcarrito.importe=this.prod.precio * 1
-            console.log(this.itemcarrito)
-            const URLPOST="https://639e8f4e3542a261305d989b.mockapi.io/carritodetalle"
+            let storageItem=[]
+            if (localStorage.getItem('items')!==null && localStorage.getItem('items')){
+                storageItem = JSON.parse(localStorage.getItem('items'))
+                let index=storageItem.findIndex(item => item.prodid===this.itemcarrito.prodid)
+                if (index<0){
+                    console.log(index)
+                    storageItem.push(this.itemcarrito)
+                    this.$swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: `Se agrego ${this.itemcarrito.producto} con exito al carrito`,
+                            showConfirmButton: false,
+                            timer: 1500
+                            })      
+                }else{
+                    storageItem[index].cantidad++
+                    storageItem[index].importe=storageItem[index].precio*storageItem[index].cantidad
+                    this.$swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: `Se agrego una unidad mas de ${this.itemcarrito.producto} con exito al carrito`,
+                            showConfirmButton: false,
+                            timer: 1500
+                            })  
+                }    
+                localStorage.setItem('items',JSON.stringify(storageItem))
+            }else{
+                storageItem.push(this.itemcarrito)
+                console.log('Bien este es el primer dato y lo pushea bien')
+                console.log(storageItem)
+                localStorage.setItem('items',JSON.stringify(storageItem))
+            }
+            
+            /* const URLPOST="https://639e8f4e3542a261305d989b.mockapi.io/carritodetalle"
             axios
                 .post(URLPOST, this.itemcarrito)
             console.log (this.itemcarrito)  
@@ -61,7 +100,7 @@ export default {
                 title: 'El producto fue agregado con exito',
                 showConfirmButton: false,
                 timer: 1500
-                }) 
+                })  */
         },
     }
 }

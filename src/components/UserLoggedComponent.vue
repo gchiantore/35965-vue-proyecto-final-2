@@ -5,7 +5,7 @@
         <p class="m-2">{{userName}}</p>
     </div>
     <div>
-        <button @click="logOut()" class="btn btn-success">LogOut</button>
+        <button @click="logOut()" class="btn btn-success"><i class="bi bi-box-arrow-right"></i></button>
     </div>    
   </div>
 </template>

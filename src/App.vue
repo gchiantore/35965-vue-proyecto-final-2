@@ -149,6 +149,7 @@ export default {
             if (this.user.pass===this.pass){
               /* Validacion OK */     
               this.logged=2
+              localStorage.setItem('userLog',JSON.stringify(this.user))
             }else{
               this.logged=3
             }

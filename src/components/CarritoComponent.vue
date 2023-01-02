@@ -4,14 +4,15 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Importe</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="(item, index) of carritodetalle" :key="index">
-                <th scope="row">{{item.id}}</th>
+                <th scope="row">{{item.prodid}}</th>
                 <td>{{item.producto}}</td>
                 <td>{{item.cantidad}}</td>
                 <td>{{item.precio}}</td>
@@ -19,11 +20,18 @@
             </tr>
         </tbody>
     </table>
+    <div class="col-md-12 text-center p-3">
+        
+        <button class="btn btn-danger m-3">Cancelo la compra</button>
+        <button class="btn btn-light m-3"> Humm creo que me falto algo</button>
+        <button class="btn btn-success m-3"> Listo Compro !</button>
+        
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+
 export default {
     name:'CarritoComponent',
     data(){
@@ -33,12 +41,7 @@ export default {
         }    
     },
     created(){
-            const URLAPIPRODUCTOS="https://639e8f4e3542a261305d989b.mockapi.io/carritodetalle";
-            axios.get(URLAPIPRODUCTOS)
-                .then(response => response.data)
-                .then(data =>{
-                    this.carritodetalle = data
-                })  
+            this.carritodetalle=JSON.parse(localStorage.getItem('items'))
           },
 
 }
