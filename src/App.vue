@@ -138,7 +138,8 @@ export default {
                   this.users = data
                   console.log(this.users[0])
                })
-               
+          localStorage.removeItem('items')
+          localStorage.removeItem('userLog')      
                
 
     },

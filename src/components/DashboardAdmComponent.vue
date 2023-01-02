@@ -19,9 +19,9 @@
                 users:Object,
                 product:Object,
                 carrito:Object,
-                cantProduct:10,
-                cantUsuarios:2,
-                cantOrdenes:5,
+                cantProduct:0,
+                cantUsuarios:0,
+                cantOrdenes:0,
             }    
         },
         created(){
@@ -33,7 +33,7 @@
                     this.cantUsuarios=this.users.length
                 })
             
-            const URLAPICARRITO="https://639e8f4e3542a261305d989b.mockapi.io/carrito";
+            const URLAPICARRITO="https://639e8f4e3542a261305d989b.mockapi.io/carritodetalle";
             axios.get(URLAPICARRITO)
                 .then(response => response.data)
                 .then(data =>{

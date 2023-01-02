@@ -6,12 +6,14 @@
          </div>
          <div v-else class="titulo">
             <h1>Dashboard de Cliente</h1>
+            <DashboardUserComponent />
          </div>
    </div>
 </template>
 
 <script>
 import DashboardAdmComponent from '@/components/DashboardAdmComponent.vue'
+import DashboardUserComponent from '@/components/DashboardUserComponent.vue'
 
 export default {
   name: 'HomeView',
@@ -21,6 +23,7 @@ export default {
     
   components:{
     DashboardAdmComponent,
+    DashboardUserComponent,
 
   } 
 }
